@@ -23,3 +23,42 @@ The Following entities will be present in the network :
         - Core Part: Download file from multiple peers (different pieces of file from different 
           peers - piece selection algorithm) simultaneously and all the files which client downloads 
           will be shareable to other users in the same group. Ensure file integrity from SHA1 comparison.
+    - Show downloads
+    - Stop sharing file
+    - Stop sharing all files(Logout)
+    - Whenever client logins, all previously shared files before logout should automatically be on 
+      sharing mode
+
+## Working:
+
+1. One tracker will always be online.
+2. Client needs to create an account (userid and password) in order to be part of the network.
+3. Client can create any number of groups(groupid should be different) and hence will be owner of 
+   those groups.
+4. Client needs to be part of the group from which it wants to download the file.
+5. Client will send join request to join a group.
+6. Owner Client Will Accept/Reject the request.
+7. After joining group , client can see list of all the shareable files in the group.
+8. Client can share file in any group (note: file will not get uploaded to tracker but only the  
+   <ip>:<port> of the client for that file).
+9. Client can send the download command to tracker with the group name and filename and tracker will send  
+   the details of the group members which are currently sharing that particular file.
+10. After fetching the peer info from the tracker, client will communicate with peers about the portions  
+    of the file they contain and hence accordingly decide which part of data to take from which peer (You need to design your own Piece Selection Algorithm).
+11. As soon as a piece of file gets downloaded it should be available for sharing.
+12. After logout, the client will temporarily stop sharing the currently shared files till the next login.
+
+
+## Commands:
+
+1. Tracker:
+    - **Run Tracker:** ./tracker tracker_info.txt tracker_no tracker_info.txt - Contains ip, 
+      port details of all the trackers
+    - Close Tracker: quit
+2. Client:
+    - **Run Client:** ./client <IP>:<PORT> tracker_info.txt tracker_info.txt - Contains ip, port 
+      details  of all the trackers
+    - **Create User Account:** create_user <user_id> <password>
+    - **Login:** login <user_id> <password>
+    - **Create Group:** create_group <group_id>
+    - **Join Group:** 
