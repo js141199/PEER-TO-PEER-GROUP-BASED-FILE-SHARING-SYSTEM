@@ -1,5 +1,17 @@
 # Peer-to-Peer Group Based File Sharing System
 
+## Explanation of system
+
+1. It is an group based file sharing system where users can share, download files from 
+   the group they belong to.
+2. Download will be parallel with multiple pieces from multiple peers.
+
+## Tech Stack
+1. Socket Programming
+2. Multi-threading
+3. C++
+4. SHA1 Hash
+
 
 
 ## Architecture Overview
